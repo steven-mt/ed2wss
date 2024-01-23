@@ -1,37 +1,25 @@
 {
-  "compilerOptions": {
-    "target": "ESNext",
-    "module": "ESNext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "types": [
-      "astro/client"
-    ],
-    "baseUrl": ".",
-    "paths": {
-      "@globals": [
-        "src/components/global"
-      ],
-      "@component/*": [
-        "src/components/*"
-      ],
-      "@style/*": [
-        "src/styles/*"
-      ],
-      "@util/*": [
-        "utils/*"
-      ],
-      "@img/*": [
-        "src/assets/img/*"
-      ],
-      "@svg/*": [
-        "src/assets/svg/*"
-      ],
-      "@icon/*": [
-        "src/assets/svg/icon/*"
-      ]
-    }
-  },
-  "extends": "astro/tsconfigs/strictest"
+	"compilerOptions": {
+		"target": "ESNext",
+		"module": "ESNext",
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"types": ["astro/client"],
+		"baseUrl": ".",
+		"paths": {
+			"@globals": ["src/components/global"],
+			"@component/*": ["src/components/*"],
+			"@style/*": ["src/styles/*"],
+			"@util/*": ["utils/*"],
+			"@img/*": ["src/assets/img/*"],
+			"@svg/*": ["src/assets/svg/*"],
+			"@icon/*": ["src/assets/svg/icon/*"],
+
+			// fix (typescript/pnpm ?) bug in astro.config.ts with vite plugins
+			// https://github.com/vitejs/vite/issues/13027#issuecomment-1527384805
+			"vite": ["node_modules/vite"]
+		}
+	},
+	"extends": "astro/tsconfigs/strictest"
 }
