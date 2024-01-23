@@ -13,10 +13,8 @@ export default defineConfig({
 	site: seoConfig.baseURL,
 	integrations: [
 		tailwind({
-			config: {
-				applyBaseStyles: false,
-				path: "./tailwind.config.js"
-			}
+			applyBaseStyles: false,
+			configFile: "./tailwind.config.js"
 		}),
 		sitemap(),
 		compress()
