@@ -20,6 +20,9 @@ if (textArea && convertButton && outputArea) {
 		inputLines.forEach((line) => {
 			const found = line.match(/.+\/.+(-.+)+.*/)
 
+			// TODO: reverse card order(character+event separate from climax cards)
+			// TODO: option to remove "E" prefix
+
 			if (found) {
 				const foundLine = found[0]
 
@@ -43,8 +46,16 @@ if (textArea && convertButton && outputArea) {
 
 				setReleases.add(setRelease)
 
-				if (selectedSets.has(setRelease)) {
-					individualNumber = "E" + individualNumber
+				// Add "E" prefix or add number to set if the prefix already exists
+				if (individualNumber.startsWith("E")) {
+					selectedSets.add(setRelease)
+				} else if (selectedSets.has(setRelease)) {
+					if (individualNumber.startsWith("T")) {
+						individualNumber =
+							individualNumber[0] + "E" + individualNumber.slice(1)
+					} else {
+						individualNumber = "E" + individualNumber
+					}
 				}
 
 				for (let index = 0; index < amount; index++) {
@@ -100,11 +111,8 @@ if (textArea && convertButton && outputArea) {
 			container.appendChild(div)
 
 			checkbox.addEventListener("change", () => {
-				console.log(label.innerHTML, checkbox.checked)
 				if (checkbox.checked) selectedSets.add(label.innerHTML)
 				else selectedSets.delete(label.innerHTML)
-
-				console.log(selectedSets)
 			})
 		})
 	}
