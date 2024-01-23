@@ -18,7 +18,7 @@ if (textArea && convertButton && outputArea) {
 		const setReleases = new Set<string>()
 
 		inputLines.forEach((line) => {
-			const found = line.match(/[A-Z0-9]+\/[A-Z0-9]+(-[A-Z0-9]+)+.*/)
+			const found = line.match(/.+\/.+(-.+)+.*/)
 
 			if (found) {
 				const foundLine = found[0]
