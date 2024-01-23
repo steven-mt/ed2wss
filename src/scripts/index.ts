@@ -1,12 +1,11 @@
 const textArea = document.querySelector<HTMLTextAreaElement>("#input-area")
 const convertButton = document.getElementById("convert-button")
-const outputArea = document.querySelector<HTMLTextAreaElement>("#output-area")
 
 let inputString: string
 const selectedSets = new Set<string>()
 
-if (textArea && convertButton && outputArea) {
-	const handleClick = (outputTextElement: HTMLTextAreaElement) => {
+if (textArea && convertButton) {
+	const handleClick = () => {
 		if (inputString !== textArea.value) selectedSets.clear()
 
 		inputString = textArea.value
@@ -69,23 +68,10 @@ if (textArea && convertButton && outputArea) {
 			outputString = outputString.concat(outputNumber, "\n")
 		})
 
-		if (outputTextElement) outputTextElement.value = outputString
+		const outputArea =
+			document.querySelector<HTMLTextAreaElement>("#output-area")
 
-		let cardNumbersString: string = ""
-
-		setReleases.forEach((cardNumber) => {
-			cardNumbersString = cardNumbersString.concat(cardNumber, ", ")
-		})
-
-		const setsDisplayArea =
-			document.querySelector<HTMLTextAreaElement>("#sets-display-area")
-
-		if (setsDisplayArea) setsDisplayArea.value = cardNumbersString.slice(0, -1)
-
-		const setsInputArea =
-			document.querySelector<HTMLTextAreaElement>("#sets-input-area")
-
-		if (setsInputArea) setsInputArea.disabled = false
+		if (outputArea) outputArea.value = outputString
 
 		const container = document.querySelector("#checkboxContainer")
 		if (!container) return
@@ -117,5 +103,5 @@ if (textArea && convertButton && outputArea) {
 		})
 	}
 
-	convertButton.addEventListener("click", () => handleClick(outputArea))
+	convertButton.addEventListener("click", () => handleClick())
 }
