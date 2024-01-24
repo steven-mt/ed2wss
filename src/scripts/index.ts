@@ -1,14 +1,20 @@
 let inputString: string
 
-const selectedSets = new Set<string>()
+let isNewInput: boolean
 
 const setReleases = new Set<string>()
+
+const selectedSets = new Set<string>()
 
 const parseInput = () => {
 	const textArea = document.querySelector<HTMLTextAreaElement>("#input-area")
 	if (!textArea) return
 
-	if (inputString !== textArea.value) selectedSets.clear()
+	if (inputString !== textArea.value) {
+		isNewInput = true
+		setReleases.clear()
+		selectedSets.clear()
+	} else isNewInput = false
 
 	inputString = textArea.value
 
@@ -20,7 +26,6 @@ const parseInput = () => {
 		const found = line.match(/.+\/.+(-.+)+.*/)
 
 		// TODO: reverse card order(character+event separate from climax cards)
-		// TODO: option to remove "E" prefix
 
 		if (found) {
 			const foundLine = found[0]
@@ -46,14 +51,24 @@ const parseInput = () => {
 			setReleases.add(setRelease)
 
 			// Add "E" prefix or add number to set if the prefix already exists
-			if (individualNumber.startsWith("E")) {
-				selectedSets.add(setRelease)
-			} else if (selectedSets.has(setRelease)) {
-				if (individualNumber.startsWith("T")) {
-					individualNumber =
-						individualNumber[0] + "E" + individualNumber.slice(1)
+			if (isNewInput) {
+				if (individualNumber.startsWith("E")) {
+					selectedSets.add(setRelease)
+				}
+			} else {
+				if (selectedSets.has(setRelease)) {
+					if (individualNumber.startsWith("T")) {
+						individualNumber =
+							individualNumber[0] + "E" + individualNumber.slice(1)
+					} else {
+						individualNumber = "E" + individualNumber
+					}
 				} else {
-					individualNumber = "E" + individualNumber
+					if (individualNumber.startsWith("TE")) {
+						individualNumber = individualNumber[0] + individualNumber.slice(2)
+					} else if (individualNumber.startsWith("E")) {
+						individualNumber = individualNumber.slice(1)
+					}
 				}
 			}
 
@@ -102,6 +117,8 @@ const handleClick = () => {
 		checkbox.addEventListener("change", () => {
 			if (checkbox.checked) selectedSets.add(label.innerHTML)
 			else selectedSets.delete(label.innerHTML)
+
+			parseInput()
 		})
 	})
 }
