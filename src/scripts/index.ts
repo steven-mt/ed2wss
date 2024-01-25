@@ -118,7 +118,9 @@ const parseInput = () => {
 				}
 			}
 
-			outputLines.push(`${setRelease}-${individualNumber}\t${amount}`)
+			for (let index = 0; index < amount; index++) {
+				outputLines.push(`${setRelease}-${individualNumber}`)
+			}
 		}
 	})
 
