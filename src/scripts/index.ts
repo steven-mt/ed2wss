@@ -87,20 +87,29 @@ const parseInput = () => {
 
 			setReleases.add(setRelease)
 
-			// Add "E" prefix or add number to set if the prefix already exists
 			if (isNewInput) {
-				if (individualNumber.startsWith("E")) {
+				// New input value, so keep track of the sets that already have prefixes
+				if (
+					individualNumber.startsWith("E") ||
+					individualNumber.startsWith("TE")
+				) {
 					selectedSets.add(setRelease)
 				}
 			} else {
-				if (selectedSets.has(setRelease)) {
+				// Input value did not change, but selectedSets may have changed
+				// Add or remove prefixes based on their existence in selectedSets
+				if (
+					selectedSets.has(setRelease) &&
+					!individualNumber.startsWith("E") &&
+					!individualNumber.startsWith("TE")
+				) {
 					if (individualNumber.startsWith("T")) {
 						individualNumber =
 							individualNumber[0] + "E" + individualNumber.slice(1)
 					} else {
 						individualNumber = "E" + individualNumber
 					}
-				} else {
+				} else if (!selectedSets.has(setRelease)) {
 					if (individualNumber.startsWith("TE")) {
 						individualNumber = individualNumber[0] + individualNumber.slice(2)
 					} else if (individualNumber.startsWith("E")) {
