@@ -1,3 +1,40 @@
+const fileElement = document.querySelector<HTMLInputElement>("#file-input")
+
+fileElement?.addEventListener("change", (ev) => {
+	let fileExtension: string = ""
+
+	if (fileElement.value.lastIndexOf(".") > 0)
+		fileExtension = fileElement.value.substring(
+			fileElement.value.lastIndexOf(".") + 1,
+			fileElement.value.length
+		)
+
+	if (fileExtension.toLowerCase() !== "txt") {
+		alert("You must select a text file")
+		return
+	}
+
+	const fileList = (ev.target as HTMLInputElement).files
+	if (!fileList) return
+
+	const selectedFile = fileList[0]
+	if (!selectedFile) return
+
+	const reader = new FileReader()
+
+	reader.onload = (ev) => {
+		const textArea = document.querySelector<HTMLTextAreaElement>("#input-area")
+		if (!textArea) return
+
+		const textFromFile = ev.target?.result?.toString()
+		if (typeof textFromFile !== "string") return
+
+		textArea.textContent = textFromFile
+	}
+
+	reader.readAsText(selectedFile)
+})
+
 let inputString: string
 
 let isNewInput: boolean

@@ -22,7 +22,9 @@ import { Layout } from "@globals"
 			class="flex flex-1 md:justify-around gap-10 flex-col md:flex-row w-full"
 		>
 			<div class="flex flex-col space-y-2 w-full">
-				<div>Enter import file contents here:</div>
+				<div>Select the import text file or paste the file contents:</div>
+
+				<input type="file" id="file-input" accept=".txt" class="w-min" />
 
 				<textarea
 					name="text"
