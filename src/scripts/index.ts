@@ -29,7 +29,7 @@ fileElement?.addEventListener("change", (ev) => {
 		const textFromFile = ev.target?.result?.toString()
 		if (typeof textFromFile !== "string") return
 
-		textArea.textContent = textFromFile
+		textArea.value = textFromFile
 	}
 
 	reader.readAsText(selectedFile)
