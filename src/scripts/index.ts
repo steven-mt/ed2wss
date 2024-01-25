@@ -20,7 +20,7 @@ const parseInput = () => {
 
 	const inputLines = inputString.split("\n")
 
-	const outputNumbers: string[] = []
+	const outputLines: string[] = []
 
 	inputLines.forEach((line) => {
 		const found = line.match(/.+\/.+(-.+)+.*/)
@@ -72,14 +72,12 @@ const parseInput = () => {
 				}
 			}
 
-			for (let index = 0; index < amount; index++) {
-				outputNumbers.push(`${setRelease}-${individualNumber}`)
-			}
+			outputLines.push(`${setRelease}-${individualNumber}\t${amount}`)
 		}
 	})
 
 	let outputString: string = ""
-	outputNumbers.forEach((outputNumber) => {
+	outputLines.forEach((outputNumber) => {
 		outputString = outputString.concat(outputNumber, "\n")
 	})
 
