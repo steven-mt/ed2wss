@@ -43,6 +43,10 @@ const setReleases = new Set<string>()
 
 const selectedSets = new Set<string>()
 
+let fileName: string | undefined
+
+const outputArea = document.querySelector<HTMLTextAreaElement>("#output-area")
+
 const parseInput = () => {
 	const textArea = document.querySelector<HTMLTextAreaElement>("#input-area")
 	if (!textArea) return
@@ -56,6 +60,8 @@ const parseInput = () => {
 	inputString = textArea.value
 
 	const inputLines = inputString.split("\n")
+
+	fileName = inputLines[0]
 
 	const outputLines: string[] = []
 
@@ -129,8 +135,6 @@ const parseInput = () => {
 		outputString = outputString.concat(outputNumber, "\n")
 	})
 
-	const outputArea = document.querySelector<HTMLTextAreaElement>("#output-area")
-
 	if (outputArea) outputArea.value = outputString
 }
 
@@ -170,5 +174,24 @@ const handleClick = () => {
 }
 
 const convertButton = document.getElementById("convert-button")
-
 if (convertButton) convertButton.addEventListener("click", () => handleClick())
+
+const saveButton = document.getElementById("save-button")
+saveButton?.addEventListener("click", () => {
+	if (!outputArea) return
+
+	if (!outputArea.value.trim()) {
+		alert("Output is empty, will not create file")
+		return
+	}
+
+	const link = document.createElement("a")
+
+	link.download = fileName ? `${fileName}.txt` : "wssImport.txt"
+
+	const blob = new Blob([outputArea.value], { type: "text/plain" })
+
+	link.href = window.URL.createObjectURL(blob)
+
+	link.click()
+})
