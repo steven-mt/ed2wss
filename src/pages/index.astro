@@ -21,7 +21,7 @@ import { Layout } from "@globals"
 		<div
 			class="flex flex-1 md:justify-around gap-10 flex-col md:flex-row w-full"
 		>
-			<div class="flex flex-col space-y-2 w-full">
+			<div class="flex flex-1 flex-col space-y-2">
 				<div>Select the import text file or paste the file contents:</div>
 
 				<input type="file" id="file-input" accept=".txt" class="w-min" />
@@ -29,25 +29,24 @@ import { Layout } from "@globals"
 				<textarea
 					name="text"
 					id="input-area"
-					rows="3"
-					class="resize-none border-2 h-full dark:bg-black dark:text-white"
+					class="resize-none border-2 flex-1 dark:bg-black dark:text-white"
 				></textarea>
 
 				<button id="convert-button">Convert</button>
 			</div>
 
-			<div class="flex flex-col w-full gap-4">
+			<div class="flex flex-1 flex-col gap-4">
 				<div>Sets:</div>
 
 				<div id="checkboxContainer" class=""></div>
 
 				<div>Output:</div>
 
-				<div class="relative w-full h-full">
+				<div class="flex flex-1 relative">
 					<textarea
 						disabled
 						id="output-area"
-						class="resize-none border-2 w-full h-full"
+						class="resize-none border-2 flex-1"
 					>
 					</textarea>
 
