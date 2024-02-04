@@ -10,7 +10,7 @@ export const seoConfig = {
 		"A tool to convert text files exported from EncoreDecks so that they can be exported to the Weiss Schwarz Simulator by Blake Thoennes.", //website's description.
 	type: "website",
 	image: {
-		url: "/public/favicons/favicon-128x128.png", // website's thumbnail.
+		url: "https://ed2wss.vercel.app/favicons/favicon-128x128.png", // website's thumbnail.
 		alt: "OpenGraph thumbnail, fleur-de-lis symbol.", // website's thumbnail description.
 		width: 128,
 		height: 128
