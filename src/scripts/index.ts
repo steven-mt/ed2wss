@@ -63,12 +63,17 @@ const parseInput = () => {
 
 	fileName = inputLines[0]
 
-	const outputLines: string[] = []
+	const outputLines: string[][] = []
 
 	inputLines.forEach((line) => {
 		const found = line.match(/.+\/.+(-.+)+.*/)
 
+		const trimmedLine = line.trim()
+
 		// TODO: reverse card order(character+event separate from climax cards)
+		if (!found && ["Characters", "Events", "Climaxes"].includes(trimmedLine)) {
+			outputLines.push([])
+		}
 
 		if (found) {
 			const foundLine = found[0]
@@ -125,14 +130,22 @@ const parseInput = () => {
 			}
 
 			for (let index = 0; index < amount; index++) {
-				outputLines.push(`${setRelease}-${individualNumber}`)
+				outputLines[outputLines.length - 1]?.push(
+					`${setRelease}-${individualNumber}`
+				)
 			}
 		}
 	})
 
+	outputLines.forEach((section) => {
+		section.reverse()
+	})
+
 	let outputString: string = ""
-	outputLines.forEach((outputNumber) => {
-		outputString = outputString.concat(outputNumber, "\n")
+	outputLines.forEach((section) => {
+		section.forEach((outputNumber) => {
+			outputString = outputString.concat(outputNumber, "\n")
+		})
 	})
 
 	if (outputArea) outputArea.value = outputString
