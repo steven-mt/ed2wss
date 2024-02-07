@@ -70,7 +70,6 @@ const parseInput = () => {
 
 		const trimmedLine = line.trim()
 
-		// TODO: reverse card order(character+event separate from climax cards)
 		if (!found && ["Characters", "Events", "Climaxes"].includes(trimmedLine)) {
 			outputLines.push([])
 		}
