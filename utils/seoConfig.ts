@@ -5,17 +5,17 @@ import type { ManifestOptions } from "vite-plugin-pwa"
  * Defines the default SEO configuration for the website.
  */
 export const seoConfig = {
-	baseURL: "https://example.com", // Change this to your production URL.
+	baseURL: "https://ed2wss.vercel.app", // production URL.
 	description:
-		"Astro PWA Starter is an opionated Astro starter for building robust static websites.", // Change this to be your website's description.
+		"A tool to convert text files exported from EncoreDecks so that they can be exported to the Weiss Schwarz Simulator by Blake Thoennes.", //website's description.
 	type: "website",
 	image: {
-		url: "https://picsum.photos/1200/630", // Change this to your website's thumbnail.
-		alt: "OpenGraph thumbnail description.", // Change this to your website's thumbnail description.
-		width: 1200,
-		height: 630
+		url: "https://ed2wss.vercel.app/favicons/favicon-128x128.png", // website's thumbnail.
+		alt: "OpenGraph thumbnail, fleur-de-lis symbol.", // website's thumbnail description.
+		width: 128,
+		height: 128
 	},
-	siteName: "Astro PWA Starter", // Change this to your website's name,
+	siteName: "ED2WSS Import Converter", // website's name,
 	twitter: {
 		card: "summary_large_image"
 	}
@@ -25,12 +25,12 @@ export const seoConfig = {
  * Defines the configuration for PWA webmanifest.
  */
 export const manifest: Partial<ManifestOptions> = {
-	name: "Astro PWA Starter", // Change this to your website's name.
-	short_name: "Astro PWA Starter", // Change this to your website's short name.
+	name: "ED2WSS Import Converter", // website's name.
+	short_name: "ED2WSS", // website's short name.
 	description:
-		"Astro PWA Starter is an opionated Astro starter for building robust static websites.", // Change this to your websites description.
-	theme_color: "#30E130", // Change this to your primary color.
-	background_color: "#ffffff", // Change this to your background color.
+		"A tool to convert text files exported from EncoreDecks so that they can be exported to the Weiss Schwarz Simulator by Blake Thoennes.", // websites description.
+	theme_color: "#000", // primary color.
+	background_color: "#000", // background color.
 	display: "minimal-ui",
 	icons: [
 		{

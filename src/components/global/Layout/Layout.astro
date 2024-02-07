@@ -147,14 +147,14 @@ const {
 			href="/favicons/favicon.ico"
 		/>
 		<link rel="icon" type="image/x-icon" href="/favicons/favicon.ico" />
-		<meta name="msapplication-TileColor" content="#30E130" />
+		<meta name="msapplication-TileColor" content="#0000" />
 		<meta
 			name="msapplication-TileImage"
 			content="/favicons/favicon-144x144.png"
 		/>
 		<meta name="msapplication-config" content="/browserconfig.xml" />
 		<link rel="icon" type="image/svg+xml" href="/favicons/favicon.svg" />
-		<meta name="theme-color" content="#30E130" />
+		<meta name="theme-color" content="#000" />
 
 		<!-- Service worker registration. -->
 
@@ -165,6 +165,20 @@ const {
 		class="min-h-screen flex flex-col w-full overflow-x-hidden dark:bg-gray-900 dark:text-white"
 	>
 		<main class="flex flex-1 flex-col h-[100%] w-full">
+			<header class="space-y-2 text-center pt-4">
+				<h1 class="text-2xl font-semibold">ED2WSS Import Converter</h1>
+
+				<p>
+					Convert an exported text file from EncoreDecks to a format that can be
+					used when importing into the <a
+						target="_blank"
+						href="https://blakethoennes.itch.io/weiss-schwarz"
+						class="text-blue-600 hover:text-blue-400 hover:underline visited:text-purple-600"
+						>Weiss Schwarz Simulator by Blake Thoennes</a
+					>.
+				</p>
+			</header>
+
 			<slot />
 		</main>
 
